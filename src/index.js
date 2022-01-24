@@ -1023,50 +1023,54 @@ const initialize = async () => {
     const msgParams = {
       domain: {
         chainId: chainId.toString(),
-        name: 'Ether Mail',
-        verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC',
+        name: 'Godwoken',
         version: '1',
       },
       message: {
-        contents: 'Hello, Bob!',
-        from: {
-          name: 'Cow',
-          wallets: [
-            '0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826',
-            '0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF',
-          ],
+        nonce: 1,
+        accountScriptHash: 0xdddddddddddddddddddddddddddddddddddddddd,
+        layer1OwnerLock: {
+          codeHash: 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee,
+          hashType: 'type',
+          args: 0x1234,
         },
-        to: [
-          {
-            name: 'Bob',
-            wallets: [
-              '0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB',
-              '0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57',
-              '0xB0B0b0b0b0b0B000000000000000000000000000',
-            ],
-          },
-        ],
+        withdraw: {
+          ckbCapacity: 1000,
+          sudtAmount: 300,
+          sudtScriptHash: 0xffffffffffffffffffffffffffffffffffffffff,
+        },
+        fee: {
+          sudtId: 1,
+          sudtAmount: 100,
+        },
       },
-      primaryType: 'Mail',
+      primaryType: 'Withdrawal',
       types: {
         EIP712Domain: [
           { name: 'name', type: 'string' },
           { name: 'version', type: 'string' },
           { name: 'chainId', type: 'uint256' },
-          { name: 'verifyingContract', type: 'address' },
         ],
-        Group: [
-          { name: 'name', type: 'string' },
-          { name: 'members', type: 'Person[]' },
+        Withdrawal: [
+          { name: 'nonce', type: 'uint256' },
+          { name: 'accountScriptHash', type: 'byte32' },
+          { name: 'layer1OwnerLock', type: 'Script' },
+          { name: 'withdraw', type: 'WithdrawalAsset' },
+          { name: 'fee', type: 'Fee' },
         ],
-        Mail: [
-          { name: 'from', type: 'Person' },
-          { name: 'to', type: 'Person[]' },
-          { name: 'contents', type: 'string' },
+        Fee: [
+          { name: 'sudtId', type: 'uint256' },
+          { name: 'sudtAmount', type: 'uint256' },
         ],
-        Person: [
-          { name: 'name', type: 'string' },
-          { name: 'wallets', type: 'address[]' },
+        Script: [
+          { name: 'codeHash', type: 'byte32' },
+          { name: 'hashType', type: 'string' },
+          { name: 'args', type: 'bytes' },
+        ],
+        WithdrawalAsset: [
+          { name: 'ckbCapacity', type: 'uint256' },
+          { name: 'sudtAmount', type: 'uint256' },
+          { name: 'sudtScriptHash', type: 'byte32' },
         ],
       },
     };
@@ -1092,51 +1096,55 @@ const initialize = async () => {
     const chainId = parseInt(chainIdDiv.innerHTML, 16) || networkId;
     const msgParams = {
       domain: {
-        chainId,
-        name: 'Ether Mail',
-        verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC',
+        chainId: chainId.toString(),
+        name: 'Godwoken',
         version: '1',
       },
       message: {
-        contents: 'Hello, Bob!',
-        from: {
-          name: 'Cow',
-          wallets: [
-            '0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826',
-            '0xDeaDbeefdEAdbeefdEadbEEFdeadbeEFdEaDbeeF',
-          ],
+        nonce: 1,
+        accountScriptHash: 0xdddddddddddddddddddddddddddddddddddddddd,
+        layer1OwnerLock: {
+          codeHash: 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee,
+          hashType: 'type',
+          args: 0x1234,
         },
-        to: [
-          {
-            name: 'Bob',
-            wallets: [
-              '0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB',
-              '0xB0BdaBea57B0BDABeA57b0bdABEA57b0BDabEa57',
-              '0xB0B0b0b0b0b0B000000000000000000000000000',
-            ],
-          },
-        ],
+        withdraw: {
+          ckbCapacity: 1000,
+          sudtAmount: 300,
+          sudtScriptHash: 0xffffffffffffffffffffffffffffffffffffffff,
+        },
+        fee: {
+          sudtId: 1,
+          sudtAmount: 100,
+        },
       },
-      primaryType: 'Mail',
+      primaryType: 'Withdrawal',
       types: {
         EIP712Domain: [
           { name: 'name', type: 'string' },
           { name: 'version', type: 'string' },
           { name: 'chainId', type: 'uint256' },
-          { name: 'verifyingContract', type: 'address' },
         ],
-        Group: [
-          { name: 'name', type: 'string' },
-          { name: 'members', type: 'Person[]' },
+        Withdrawal: [
+          { name: 'nonce', type: 'uint256' },
+          { name: 'accountScriptHash', type: 'byte32' },
+          { name: 'layer1OwnerLock', type: 'Script' },
+          { name: 'withdraw', type: 'WithdrawalAsset' },
+          { name: 'fee', type: 'Fee' },
         ],
-        Mail: [
-          { name: 'from', type: 'Person' },
-          { name: 'to', type: 'Person[]' },
-          { name: 'contents', type: 'string' },
+        Fee: [
+          { name: 'sudtId', type: 'uint256' },
+          { name: 'sudtAmount', type: 'uint256' },
         ],
-        Person: [
-          { name: 'name', type: 'string' },
-          { name: 'wallets', type: 'address[]' },
+        Script: [
+          { name: 'codeHash', type: 'byte32' },
+          { name: 'hashType', type: 'string' },
+          { name: 'args', type: 'bytes' },
+        ],
+        WithdrawalAsset: [
+          { name: 'ckbCapacity', type: 'uint256' },
+          { name: 'sudtAmount', type: 'uint256' },
+          { name: 'sudtScriptHash', type: 'byte32' },
         ],
       },
     };
