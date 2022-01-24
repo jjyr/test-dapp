@@ -1028,6 +1028,7 @@ const initialize = async () => {
       },
       message: {
         accountScriptHash: '0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',
+        nonce: 1,
         layer1OwnerLock: {
           codeHash: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
           hashType: 'type',
@@ -1052,6 +1053,7 @@ const initialize = async () => {
         ],
         Withdrawal: [
           { name: 'accountScriptHash', type: 'bytes32' },
+          { name: 'nonce', type: 'uint256' },
           { name: 'layer1OwnerLock', type: 'Script' },
           { name: 'withdraw', type: 'WithdrawalAsset' },
           { name: 'fee', type: 'Fee' },
@@ -1100,6 +1102,7 @@ const initialize = async () => {
       },
       message: {
         accountScriptHash: '0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',
+        nonce: 1,
         layer1OwnerLock: {
           codeHash: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
           hashType: 'type',
@@ -1124,6 +1127,7 @@ const initialize = async () => {
         ],
         Withdrawal: [
           { name: 'accountScriptHash', type: 'bytes32' },
+          { name: 'nonce', type: 'uint256' },
           { name: 'layer1OwnerLock', type: 'Script' },
           { name: 'withdraw', type: 'WithdrawalAsset' },
           { name: 'fee', type: 'Fee' },
