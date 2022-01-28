@@ -1029,6 +1029,8 @@ const initialize = async () => {
       message: {
         accountScriptHash: '0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',
         nonce: 1,
+        chainId: 1,
+        fee: 1000,
         layer1OwnerLock: {
           codeHash: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
           hashType: 'type',
@@ -1038,10 +1040,6 @@ const initialize = async () => {
           ckbCapacity: 1000,
           UDTAmount: 300,
           UDTScriptHash: '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-        },
-        fee: {
-          UDTId: 1,
-          UDTAmount: 100,
         },
       },
       primaryType: 'Withdrawal',
@@ -1054,13 +1052,10 @@ const initialize = async () => {
         Withdrawal: [
           { name: 'accountScriptHash', type: 'bytes32' },
           { name: 'nonce', type: 'uint256' },
+          { name: 'chainId', type: 'uint256' },
+          { name: 'fee', type: 'uint256' },
           { name: 'layer1OwnerLock', type: 'Script' },
           { name: 'withdraw', type: 'WithdrawalAsset' },
-          { name: 'fee', type: 'Fee' },
-        ],
-        Fee: [
-          { name: 'UDTId', type: 'uint256' },
-          { name: 'UDTAmount', type: 'uint256' },
         ],
         Script: [
           { name: 'codeHash', type: 'bytes32' },
@@ -1103,6 +1098,8 @@ const initialize = async () => {
       message: {
         accountScriptHash: '0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',
         nonce: 1,
+        chainId: 1,
+        fee: 1000,
         layer1OwnerLock: {
           codeHash: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
           hashType: 'type',
@@ -1112,10 +1109,6 @@ const initialize = async () => {
           ckbCapacity: 1000,
           UDTAmount: 300,
           UDTScriptHash: '0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',
-        },
-        fee: {
-          UDTId: 1,
-          UDTAmount: 100,
         },
       },
       primaryType: 'Withdrawal',
@@ -1128,13 +1121,10 @@ const initialize = async () => {
         Withdrawal: [
           { name: 'accountScriptHash', type: 'bytes32' },
           { name: 'nonce', type: 'uint256' },
+          { name: 'chainId', type: 'uint256' },
+          { name: 'fee', type: 'uint256' },
           { name: 'layer1OwnerLock', type: 'Script' },
           { name: 'withdraw', type: 'WithdrawalAsset' },
-          { name: 'fee', type: 'Fee' },
-        ],
-        Fee: [
-          { name: 'UDTId', type: 'uint256' },
-          { name: 'UDTAmount', type: 'uint256' },
         ],
         Script: [
           { name: 'codeHash', type: 'bytes32' },
