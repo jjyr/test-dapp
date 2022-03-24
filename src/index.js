@@ -1027,7 +1027,10 @@ const initialize = async () => {
         version: '1',
       },
       message: {
-        accountScriptHash: '0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',
+        address: {
+          registry: "ETH",
+          address: '0xdddddddddddddddddddddddddddddddddddddddd'
+        },
         nonce: 1,
         chainId: 1,
         fee: 1000,
@@ -1049,8 +1052,12 @@ const initialize = async () => {
           { name: 'version', type: 'string' },
           { name: 'chainId', type: 'uint256' },
         ],
+        RegistryAddress: [
+          { name: 'registry', type: 'string' },
+          { name: 'address', type: 'address' },
+        ],
         Withdrawal: [
-          { name: 'accountScriptHash', type: 'bytes32' },
+          { name: 'address', type: 'RegistryAddress' },
           { name: 'nonce', type: 'uint256' },
           { name: 'chainId', type: 'uint256' },
           { name: 'fee', type: 'uint256' },
@@ -1096,7 +1103,10 @@ const initialize = async () => {
         version: '1',
       },
       message: {
-        accountScriptHash: '0xdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',
+        address: {
+          registry: "ETH",
+          address: '0xdddddddddddddddddddddddddddddddddddddddd'
+        },
         nonce: 1,
         chainId: 1,
         fee: 1000,
@@ -1118,8 +1128,12 @@ const initialize = async () => {
           { name: 'version', type: 'string' },
           { name: 'chainId', type: 'uint256' },
         ],
+        RegistryAddress: [
+          { name: 'registry', type: 'string' },
+          { name: 'address', type: 'address' },
+        ],
         Withdrawal: [
-          { name: 'accountScriptHash', type: 'bytes32' },
+          { name: 'address', type: 'RegistryAddress' },
           { name: 'nonce', type: 'uint256' },
           { name: 'chainId', type: 'uint256' },
           { name: 'fee', type: 'uint256' },
