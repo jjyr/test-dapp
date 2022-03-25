@@ -124,6 +124,13 @@ const signTypedDataV4VerifyResult = document.getElementById(
   'signTypedDataV4VerifyResult',
 );
 
+const signTypedDataV4_2 = document.getElementById('signTypedDataV4_2');
+const signTypedDataV4Result_2 = document.getElementById('signTypedDataV4Result_2');
+const signTypedDataV4Verify_2 = document.getElementById('signTypedDataV4Verify_2');
+const signTypedDataV4VerifyResult_2 = document.getElementById(
+  'signTypedDataV4VerifyResult_2',
+);
+
 // Send form section
 const fromDiv = document.getElementById('fromInput');
 const toDiv = document.getElementById('toInput');
@@ -209,6 +216,8 @@ const initialize = async () => {
     signTypedDataV3Verify,
     signTypedDataV4,
     signTypedDataV4Verify,
+    signTypedDataV4_2,
+    signTypedDataV4Verify_2,
   ];
 
   const isMetaMaskConnected = () => accounts && accounts.length > 0;
@@ -259,6 +268,7 @@ const initialize = async () => {
       signTypedData.disabled = false;
       signTypedDataV3.disabled = false;
       signTypedDataV4.disabled = false;
+      signTypedDataV4_2.disabled = false;
     }
 
     if (isMetaMaskInstalled()) {
@@ -1170,6 +1180,125 @@ const initialize = async () => {
     } catch (err) {
       console.error(err);
       signTypedDataV4VerifyResult.innerHTML = `Error: ${err.message}`;
+    }
+  };
+
+  /**
+   * Sign Typed Data V4 2
+   */
+  signTypedDataV4_2.onclick = async () => {
+    const networkId = parseInt(networkDiv.innerHTML, 10);
+    const chainId = parseInt(chainIdDiv.innerHTML, 16) || networkId;
+    const msgParams = {
+      domain: {
+        chainId: chainId.toString(),
+        name: 'Godwoken',
+        version: '1',
+      },
+      message: {
+        chainId: 1,
+        from: {
+          registry: "ETH",
+          address: '0xe8ae579256c3b84efb76bbb69cb6bcbef1375f00'
+        },
+        to: "0xae39eea37dfa6b41004c50efddeb6747f72bb25ea174b2a68bd4eafc641e7c3e",
+        nonce: 9,
+        args: "",
+      },
+      primaryType: 'L2Transaction',
+      types: {
+        EIP712Domain: [
+          { name: 'name', type: 'string' },
+          { name: 'version', type: 'string' },
+          { name: 'chainId', type: 'uint256' },
+        ],
+        RegistryAddress: [
+          { name: 'registry', type: 'string' },
+          { name: 'address', type: 'address' },
+        ],
+        L2Transaction: [
+          { name: 'chainId', type: 'uint256' },
+          { name: 'from', type: 'RegistryAddress' },
+          { name: 'to', type: 'bytes32' },
+          { name: 'nonce', type: 'uint256' },
+          { name: 'args', type: 'bytes' },
+        ],
+      },
+    };
+    try {
+      const from = accounts[0];
+      const sign = await ethereum.request({
+        method: 'eth_signTypedData_v4',
+        params: [from, JSON.stringify(msgParams)],
+      });
+      signTypedDataV4Result_2.innerHTML = sign;
+      signTypedDataV4Verify_2.disabled = false;
+    } catch (err) {
+      console.error(err);
+      signTypedDataV4Result_2.innerHTML = `Error: ${err.message}`;
+    }
+  };
+
+  /**
+   *  Sign Typed Data V4 Verification
+   */
+  signTypedDataV4Verify_2.onclick = async () => {
+    const networkId = parseInt(networkDiv.innerHTML, 10);
+    const chainId = parseInt(chainIdDiv.innerHTML, 16) || networkId;
+    const msgParams = {
+      domain: {
+        chainId: chainId.toString(),
+        name: 'Godwoken',
+        version: '1',
+      },
+      message: {
+        chainId: 1,
+        from: {
+          registry: "ETH",
+          address: '0xe8ae579256c3b84efb76bbb69cb6bcbef1375f00'
+        },
+        to: "0xae39eea37dfa6b41004c50efddeb6747f72bb25ea174b2a68bd4eafc641e7c3e",
+        nonce: 9,
+        args: "",
+      },
+      primaryType: 'L2Transaction',
+      types: {
+        EIP712Domain: [
+          { name: 'name', type: 'string' },
+          { name: 'version', type: 'string' },
+          { name: 'chainId', type: 'uint256' },
+        ],
+        RegistryAddress: [
+          { name: 'registry', type: 'string' },
+          { name: 'address', type: 'address' },
+        ],
+        L2Transaction: [
+          { name: 'chainId', type: 'uint256' },
+          { name: 'from', type: 'RegistryAddress' },
+          { name: 'to', type: 'bytes32' },
+          { name: 'nonce', type: 'uint256' },
+          { name: 'args', type: 'bytes' },
+        ],
+      },
+    };
+    try {
+      const from = accounts[0];
+      const sign = signTypedDataV4Result_2.innerHTML;
+      const recoveredAddr = recoverTypedSignatureV4({
+        data: msgParams,
+        sig: sign,
+      });
+      if (toChecksumAddress(recoveredAddr) === toChecksumAddress(from)) {
+        console.log(`Successfully verified signer as ${recoveredAddr}`);
+        signTypedDataV4VerifyResult_2.innerHTML = recoveredAddr;
+      } else {
+        console.log(
+          `Failed to verify signer when comparing ${recoveredAddr} to ${from}`,
+        );
+      }
+    } catch (err) {
+      console.error(err);
+      signTypedDataV4VerifyResult_2.innerHTML = `Error: ${err.message}`;
     }
   };
 
